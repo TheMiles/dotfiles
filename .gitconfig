@@ -1,0 +1,52 @@
+[user]
+	name 		= TheMiles
+	email 		= themiles@coders-of-the-carribean.org
+
+[credential]
+	helper 		= cache
+
+[core]
+	autocrlf 	= input
+	safecrlf 	= true
+	pager		= less -x4
+
+[color]
+    branch		= auto
+	diff		= auto
+	status		= auto
+
+[color "branch"]
+    current		= red reverse
+	local		= blue
+	remote		= green
+
+[color "diff"]
+    magenta		= yellow bold
+	frag		= magenta bold
+	old			= red bold
+	new			= green bold
+
+[color "status"]
+    added		= yellow
+	changed		= green
+	untracked	= cyan
+
+
+[push]
+    default		= upstream
+
+[pull]
+    default		= current
+
+[diff]
+  memonicprefix	= true
+
+
+[alias]
+	co = checkout
+	ci = commit
+	st = status
+	br = branch
+	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+	type = cat-file -t
+	dump = cat-file -p
