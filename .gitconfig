@@ -1,7 +1,6 @@
 [user]
-	name 		= TheMiles
-	email 		= themiles@coders-of-the-carribean.org
-
+	name = TheMiles
+	email = miles@coders-of-the-caribbean.org
 [credential]
 	helper 		= cache
 

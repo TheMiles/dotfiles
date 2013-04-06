@@ -4,6 +4,10 @@ if [ "$TERM" != "dumb" ]; then
     alias ls='ls --color=auto'
     #alias dir='ls --color=auto --format=vertical'
     #alias vdir='ls --color=auto --format=long'
+
+    alias grep='grep --color=auto'
+    #alias fgrep='fgrep --color=auto'
+    #alias egrep='egrep --color=auto'
 fi
 
 # some more ls aliases
@@ -22,6 +26,8 @@ alias ....='cd ../..'
 #alias sleep_timer='echo "sudo shutdown -h now "| at now + 90 minutes' 
 #alias inform_de='inform (~/.inform/inform_de)'
 #alias amarok_pause='dbus-send --type=method_call --dest=org.kde.amarok /Player org.freedesktop.MediaPlayer.Pause'
+
+alias wesnothsmall='wesnoth --smallgui'
 
 # apt aliases
 alias acs='apt-cache search'
