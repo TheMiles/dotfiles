@@ -22,7 +22,7 @@ fi
 
 # set PATH so it includes user's private ext/bin if it exists
 if [ -d "$HOME/ext/bin" ] ; then
-    PATH="$HOME/ext/bin:{PATH}"
+    PATH="$HOME/ext/bin:$PATH"
 fi
 export SPEECHD_PORT=6561
 export LANGUAGE="de:en_US:en"
