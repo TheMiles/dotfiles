@@ -88,6 +88,14 @@ if [ -d ~/ext/CodeSourcery/Sourcery_G++_Lite/bin ] ; then
 	export PATH="${PATH}":~/ext/CodeSourcery/Sourcery_G++_Lite/bin
 fi
 
+# add homebrew coreutils path
+if [ -d /usr/local/opt/coreutils/libexec/gnubin ] ; then
+    export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+fi
+if [ -d /usr/local/opt/coreutils/libexec/gnuman ] ; then
+    export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+fi
+
 # set DEVKITPRO variable
 if [ -d ~/Projekte/DS/devkitARM ] ; then
     export DEVKITPRO=~/Projekte/DS/devkitARM
