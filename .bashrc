@@ -101,6 +101,11 @@ if [ -d ~/Projekte/DS/devkitARM ] ; then
     export DEVKITPRO=~/Projekte/DS/devkitARM
 fi
 
+# adding homebrew stuff
+if [ -f ~/.homebrewrc ] ; then
+    . ~/.homebrewrc
+fi
+
 # export for sourceforge cvs access
 export CVS_RSH=ssh
 
