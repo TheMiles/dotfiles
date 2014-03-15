@@ -58,8 +58,7 @@ if [[ -d $OHZSH ]]; then
 		# if directory enabled_plugins exists in the oh-my-zsh folder, the filenames in this
 		# directory are used as loaded plugins. Just touch/rm the plugin names in enabled_plugins
 		# to add or remove them from the plugin list
-		ENABLED_PLUGINS=`ls $OHZSH/enabled_plugins`
-		plugins=( $ENABLED_PLUGINS )
+		plugins=( `ls $OHZSH/enabled_plugins` )
 
 	else
 
