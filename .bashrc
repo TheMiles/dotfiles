@@ -46,7 +46,7 @@ xterm*|rxvt*)
     ;;
 esac
 
-export EDITOR="vim"
+export EDITOR="subl -w"
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
