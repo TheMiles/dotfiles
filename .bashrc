@@ -101,6 +101,13 @@ if [ -d ~/Projekte/DS/devkitARM ] ; then
     export DEVKITPRO=~/Projekte/DS/devkitARM
 fi
 
+# add CrossPack AVR Development
+if [ -d /usr/local/CrossPack-AVR/bin ] ; then
+    export PATH="$PATH:/usr/local/CrossPack-AVR/bin"
+fi
+
+
+
 # adding homebrew stuff
 if [ -f ~/.homebrewrc ] ; then
     . ~/.homebrewrc
