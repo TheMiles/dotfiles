@@ -82,25 +82,23 @@ fi
 #
 # order is from top to bottom with top coming first
 MYINITPATHS=(
-	"/usr/local/opt/coreutils/libexec/gnubin/"
+	"/usr/local/opt/coreutils/libexec/gnubin"
 	"$HOME/bin"
 	"$HOME/ext/bin"
 	"$HOME/scripts"
+	"/usr/local/bin"
 	"/usr/bin"
 	"/bin"
+	"/usr/local/sbin"
 	"/usr/sbin"
 	"/sbin"
-	"/usr/local/bin"
 	"/opt/X11/bin"
 	"/usr/local/CrossPack-AVR/bin"
 	"/usr/texbin"
-	"/usr/local/opt/coreutils/libexec/gnubin"
 	"/usr/lib/lightdm/lightdm"
-	"/usr/local/sbin"
-	"/usr/games"
 	"/usr/local/games"
+	"/usr/games"
 	"$HOME/ext/CodeSourcery/Sourcery_G++_Lite/bin" # i can also add some comment for this path
-	"/usr/lib/lightdm/lightdm"
 )
 
 unset PATH 											# Clearing the current PATH variable
