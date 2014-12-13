@@ -83,9 +83,9 @@ fi
 # order is from top to bottom with top coming first
 MYINITPATHS=(
 	"/usr/local/opt/coreutils/libexec/gnubin"
-	"$HOME/bin"
-	"$HOME/ext/bin"
-	"$HOME/scripts"
+	#"$HOME/bin"
+	#"$HOME/ext/bin"
+	#"$HOME/scripts"
 	"/usr/local/bin"
 	"/usr/bin"
 	"/bin"
@@ -98,7 +98,7 @@ MYINITPATHS=(
 	"/usr/lib/lightdm/lightdm"
 	"/usr/local/games"
 	"/usr/games"
-	"$HOME/ext/CodeSourcery/Sourcery_G++_Lite/bin" # i can also add some comment for this path
+	#"$HOME/ext/CodeSourcery/Sourcery_G++_Lite/bin" # i can also add some comment for this path
 )
 
 unset PATH 											# Clearing the current PATH variable
