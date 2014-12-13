@@ -117,6 +117,10 @@ unset MYINITPATHS
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
+if [[ -f .zsh_aliases ]]; then
+	source .zsh_aliases
+fi
+
 # # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'

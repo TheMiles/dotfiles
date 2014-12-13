@@ -1,0 +1,6 @@
+
+alias ls='ls --color'
+
+if [[ -f /usr/local/Cellar/make/4.1/bin/make ]]; then
+	alias make=/usr/local/Cellar/make/4.1/bin/make
+fi
