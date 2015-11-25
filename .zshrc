@@ -82,7 +82,9 @@ fi
 #
 # order is from top to bottom with top coming first
 MYINITPATHS=(
+	"/usr/local/opt/gnu-sed/libexec/gnubin"
 	"/usr/local/opt/coreutils/libexec/gnubin"
+	"/usr/local/Cellar/ctags/5.8_1/bin"
 	#"$HOME/bin"
 	#"$HOME/ext/bin"
 	#"$HOME/scripts"
