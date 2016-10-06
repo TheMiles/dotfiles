@@ -85,9 +85,6 @@ MYINITPATHS=(
 	"/usr/local/opt/gnu-sed/libexec/gnubin"
 	"/usr/local/opt/coreutils/libexec/gnubin"
 	"/usr/local/Cellar/ctags/5.8_1/bin"
-	#"$HOME/bin"
-	#"$HOME/ext/bin"
-	#"$HOME/scripts"
 	"/usr/local/bin"
 	"/usr/bin"
 	"/bin"
@@ -100,6 +97,9 @@ MYINITPATHS=(
 	"/usr/lib/lightdm/lightdm"
 	"/usr/local/games"
 	"/usr/games"
+	#"$HOME/bin"
+	#"$HOME/ext/bin"
+	"$HOME/scripts"
 	#"$HOME/ext/CodeSourcery/Sourcery_G++_Lite/bin" # i can also add some comment for this path
 )
 
