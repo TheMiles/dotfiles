@@ -4,3 +4,7 @@ alias ls='ls --color'
 if [[ -f /usr/local/Cellar/make/4.1/bin/make ]]; then
 	alias make=/usr/local/Cellar/make/4.1/bin/make
 fi
+
+# print dmesg timestamps in sensible date format
+# found on https://wiki.magenbrot.net/linux/dmesg_timestamp_in_lesbare_form_umwandeln
+alias kdmesg='dmesg | perl -ne "BEGIN{\$a= time()- qx!cat /proc/uptime!}; s/\[\s*(\d+)\.\d+\]/localtime(\$1 + \$a)/e; print \$_;"'
