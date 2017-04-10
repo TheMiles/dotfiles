@@ -129,9 +129,6 @@ if [[ -f $HOME/.zsh_aliases ]]; then
 	source $HOME/.zsh_aliases
 fi
 
-# Color listing
-#eval $(dircolors ~/.dir_colors)
-#zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 
 # # Preferred editor for local and remote sessions
