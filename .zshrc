@@ -82,6 +82,8 @@ fi
 #
 # order is from top to bottom with top coming first
 MYINITPATHS=(
+	#"$(brew --prefix coreutils)/libexec/gnubin"
+	"/Volumes/case-sensitive/esp-open-sdk/xtensa-lx106-elf/bin"
 	"/usr/local/opt/gnu-sed/libexec/gnubin"
 	"/usr/local/opt/coreutils/libexec/gnubin"
 	"/usr/local/Cellar/ctags/5.8_1/bin"
@@ -97,6 +99,7 @@ MYINITPATHS=(
 	"/usr/lib/lightdm/lightdm"
 	"/usr/local/games"
 	"/usr/games"
+	"$HOME/Projects/luatool"
 	#"$HOME/bin"
 	#"$HOME/ext/bin"
 	"$HOME/scripts"
