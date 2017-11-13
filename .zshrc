@@ -51,7 +51,6 @@ if [[ -d $OHZSH ]]; then
 	# Example format: plugins=(rails git textmate ruby lighthouse)
 	#
 	if [[ -d $OHZSH/enabled_plugins ]]; then 
-		
 		#
 		# Possibility to edit local configuration for loaded plugins
 		#
