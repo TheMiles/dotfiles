@@ -84,9 +84,13 @@ MYINITPATHS=(
 	#"$(brew --prefix coreutils)/libexec/gnubin"
 	"/Volumes/case-sensitive/esp-open-sdk/xtensa-lx106-elf/bin"
 	"/usr/local/opt/gnu-sed/libexec/gnubin"
+	"/usr/local/opt/make/libexec/gnubin"
 	"/usr/local/opt/coreutils/libexec/gnubin"
 	"/usr/local/Cellar/ctags/5.8_1/bin"
+	"/usr/local/opt/python/libexec/bin"
+	"/usr/local/opt/unzip/bin"
 	"/usr/local/bin"
+	"/usr/local/opt/m4/bin"
 	"/usr/bin"
 	"/bin"
 	"/usr/local/sbin"
@@ -119,7 +123,7 @@ done
 unset MYPATHSEPARATOR 								# clean up helper variables
 unset MYINITPATHS
 
-# export MANPATH="/usr/local/man:$MANPATH"
+export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:/usr/local/man:$MANPATH"
 
 if [[ -f .zsh_aliases ]]; then
 	source .zsh_aliases
