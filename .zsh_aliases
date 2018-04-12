@@ -8,3 +8,6 @@ fi
 # print dmesg timestamps in sensible date format
 # found on https://wiki.magenbrot.net/linux/dmesg_timestamp_in_lesbare_form_umwandeln
 alias kdmesg='dmesg | perl -ne "BEGIN{\$a= time()- qx!cat /proc/uptime!}; s/\[\s*(\d+)\.\d+\]/localtime(\$1 + \$a)/e; print \$_;"'
+
+alias reset_usb='sudo usbmuxd -u -U usbmux'
+
