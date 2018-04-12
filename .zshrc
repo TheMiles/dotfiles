@@ -125,8 +125,8 @@ unset MYINITPATHS
 
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:/usr/local/man:$MANPATH"
 
-if [[ -f .zsh_aliases ]]; then
-	source .zsh_aliases
+if [[ -f $HOME/.zsh_aliases ]]; then
+	source $HOME/.zsh_aliases
 fi
 
 # Color listing
