@@ -129,6 +129,10 @@ if [[ -f $HOME/.zsh_aliases ]]; then
 	source $HOME/.zsh_aliases
 fi
 
+if [[ -f $HOME/.tokens ]]; then
+	source $HOME/.tokens
+fi
+
 
 
 # # Preferred editor for local and remote sessions
