@@ -2,7 +2,7 @@
 # Path to your oh-my-zsh configuration.
 OHZSH=$HOME/.oh-my-zsh
 
-if [[ -d $OHZSH ]]; then 
+if [[ -d $OHZSH ]]; then
 	ZSH=$OHZSH
 	# Set name of the theme to load.
 	# Look in ~/.oh-my-zsh/themes/
@@ -41,7 +41,7 @@ if [[ -d $OHZSH ]]; then
 	# much faster.
 	# DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-	# Uncomment following line if you want to the command execution time stamp shown 
+	# Uncomment following line if you want to the command execution time stamp shown
 	# in the history command output.
 	# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 	# HIST_STAMPS="mm/dd/yyyy"
@@ -50,7 +50,7 @@ if [[ -d $OHZSH ]]; then
 	# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 	# Example format: plugins=(rails git textmate ruby lighthouse)
 	#
-	if [[ -d $OHZSH/enabled_plugins ]]; then 
+	if [[ -d $OHZSH/enabled_plugins ]]; then
 		#
 		# Possibility to edit local configuration for loaded plugins
 		#
@@ -61,7 +61,7 @@ if [[ -d $OHZSH ]]; then
 
 	else
 
-		# standard configuration on all machines withouth enabled_plugins directory in 
+		# standard configuration on all machines withouth enabled_plugins directory in
 		# the oh-my-zsh folder
 		plugins=(git)
 
@@ -110,7 +110,7 @@ MYINITPATHS=(
 )
 
 unset PATH 											# Clearing the current PATH variable
-unset MYPATHSEPARATOR 								# Using a costum separator variable, empty at first, so we don't get a separator at the 
+unset MYPATHSEPARATOR 								# Using a costum separator variable, empty at first, so we don't get a separator at the
 													# start of the the PATH
 
 for p in "${MYINITPATHS[@]}" 						# Iterate over each entry in MYINITPATHS array
