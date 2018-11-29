@@ -74,6 +74,12 @@ fi
 
 # User configuration
 
+# Adding path to LunarG Vulkan SDK
+if [[ -d "$HOME/ext/VulkanSDK/1.0.54.0/x86_64" ]]; then
+	export VULKAN_SDK="$HOME/ext/VulkanSDK/1.0.54.0/x86_64"
+	export VK_LAYER_PATH="$VULKAN_SDK/etc/explicit_layer.d"
+fi
+
 # Add directories to PATH variable
 #
 # All paths in INITPATHS are checked whether they exist on the system
@@ -106,6 +112,7 @@ MYINITPATHS=(
 	#"$HOME/bin"
 	#"$HOME/ext/bin"
 	"$HOME/scripts"
+	"$VULKAN_SDK/bin"
 	#"$HOME/ext/CodeSourcery/Sourcery_G++_Lite/bin" # i can also add some comment for this path
 )
 
@@ -133,6 +140,7 @@ MYINITPATHS=(
 	"/usr/local/lib"
 	"$HOME/ext/lib"
 	"$HOME/repositories/installs/linux-x64-debug/lib"
+	"$VULKAN_SDK/lib"
 )
 
 unset LD_LIBRARY_PATH 											# Clearing the current LD_LIBRARY_PATH variable
