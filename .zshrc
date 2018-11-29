@@ -123,6 +123,32 @@ done
 unset MYPATHSEPARATOR 								# clean up helper variables
 unset MYINITPATHS
 
+# Add directories to LD_LIBRARY_PATH variable
+#
+# All paths in INITPATHS are checked whether they exist on the system
+# if they do they get added to the PATH variable
+#
+# order is from top to bottom with top coming first
+MYINITPATHS=(
+	"/usr/local/lib"
+	"$HOME/ext/lib"
+	"$HOME/repositories/installs/linux-x64-debug/lib"
+)
+
+unset LD_LIBRARY_PATH 											# Clearing the current LD_LIBRARY_PATH variable
+unset MYPATHSEPARATOR 								# Using a costum separator variable, empty at first, so we don't get a separator at the
+													# start of the the LD_LIBRARY_PATH
+
+for p in "${MYINITPATHS[@]}" 						# Iterate over each entry in MYINITPATHS array
+do
+	if [[ -d $p ]]; then 							# Check if entry from MYINITPATHS exists on this system
+		export LD_LIBRARY_PATH=$LD_LIBRARY_PATH$MYPATHSEPARATOR$p         # If yes add it to PATH. Also use MYPATHSEPARATOR in between current path and new entry
+		MYPATHSEPARATOR=: 							# After first added entry set separator variable so it's active now
+	fi
+done
+unset MYPATHSEPARATOR 								# clean up helper variables
+unset MYINITPATHS
+
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:/usr/local/man:$MANPATH"
 
 if [[ -f $HOME/.zsh_aliases ]]; then
