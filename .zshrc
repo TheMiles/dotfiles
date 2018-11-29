@@ -69,6 +69,9 @@ if [[ -d $OHZSH ]]; then
 
 
 	source $ZSH/oh-my-zsh.sh
+
+	# remove conflicting aliases
+	unalias ag
 fi
 
 
