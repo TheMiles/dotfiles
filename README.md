@@ -19,3 +19,9 @@ After cloning/updating the contained files are "installed", meaning
 * check whether file already exists
 * make backup of the file to `~/.dotfile_backup`.
 * create symlink from repo directory to home directory
+
+
+### tmux integration
+
+I don't use a tmux configuratuin file on its own.
+At the moment I'm using the [tmux configuration from Gregory Pakosz][https://github.com/gpakosz/.tmux]. Just the `~/.tmux.conf.local` is maintained in this repo.
