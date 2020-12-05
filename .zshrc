@@ -1,3 +1,14 @@
+# Homebrew completions
+# has to be called before compinit
+# Note: Oh My Zsh calls compinit, so do this before!
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+
+  autoload -Uz compinit
+  compinit
+fi
+
+
 
 # Path to your oh-my-zsh configuration.
 OHZSH=$HOME/.oh-my-zsh
