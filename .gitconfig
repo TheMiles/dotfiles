@@ -5,7 +5,7 @@
 	helper 		= cache
 
 [core]
-	autocrlf 	= input
+	autocrlf = false
 	safecrlf 	= true
 	pager		= less -x4
 
