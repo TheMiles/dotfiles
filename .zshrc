@@ -116,6 +116,7 @@ MYINITPATHS=(
 	#"$HOME/ext/bin"
 	"$HOME/scripts"
 	"$VULKAN_SDK/bin"
+	"$HOME/Library/Python/3.7/bin"
 	#"$HOME/ext/CodeSourcery/Sourcery_G++_Lite/bin" # i can also add some comment for this path
 )
 
