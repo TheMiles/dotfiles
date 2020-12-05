@@ -185,3 +185,7 @@ export EDITOR='vim'
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
+
+# Adding settings for ampy
+# https://github.com/scientifichackers/ampy
+export AMPY_PORT=/dev/tty.SLAB_USBtoUART
