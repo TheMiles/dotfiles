@@ -200,4 +200,6 @@ export EDITOR='vim'
 
 # Adding settings for ampy
 # https://github.com/scientifichackers/ampy
-export AMPY_PORT=/dev/tty.SLAB_USBtoUART
+export AMPY_PORT=/dev/cu.usbserial-0001
+export AMPY_BAUD=115200
+export AMPY_DELAY=1.5
