@@ -94,10 +94,39 @@ if [[ -d "$HOME/ext/VulkanSDK/1.0.54.0/x86_64" ]]; then
 	export VK_LAYER_PATH="$VULKAN_SDK/etc/explicit_layer.d"
 fi
 
+
+function exportPathList {
+    DESTVAR=$1                      # first parameter is name of the variable to be set
+    PATHLIST=$2                     # second parameter is an array of paths
+    PREFIX=""                       # optional third parameter a prefix for each entry
+    SEPARATOR=":"                   # optional fourth parameter the separator between entries
+
+    if [ "$#" -ge 3 ]; then
+        PREFIX=$3
+    fi
+
+    if [ "$#" -ge 4 ]; then
+        SEPARATOR=":"
+    fi
+
+    unset "${DESTVAR}"                                  # Clearing the current target variable
+    unset MYPATHSEPARATOR                               # Using a costum separator variable, empty at first, so we don't get a separator at the
+                                                        # start of the the target variable
+
+    for p in "${(P)${PATHLIST}[@]}"                     # Iterate over each entry in PATHLIST array
+    do
+        if [[ -d $p ]]; then                            # Check if entry from PATHLIST exists on this system
+            export ${DESTVAR}=${(P)DESTVAR}${MYPATHSEPARATOR}${PREFIX}${p}         # If yes add it to PATH. Also use MYPATHSEPARATOR in between current path and new entry
+            MYPATHSEPARATOR=${SEPARATOR}                           # After first added entry set separator variable so it's active now
+        fi
+    done
+    unset MYPATHSEPARATOR                               # clean up helper variables
+    unset PATHLIST
+}
+
+
+
 # Add directories to PATH variable
-#
-# All paths in INITPATHS are checked whether they exist on the system
-# if they do they get added to the PATH variable
 #
 # order is from top to bottom with top coming first
 MYINITPATHS=(
@@ -130,49 +159,27 @@ MYINITPATHS=(
 	"$HOME/Library/Python/3.9/bin"
 	#"$HOME/ext/CodeSourcery/Sourcery_G++_Lite/bin" # i can also add some comment for this path
 )
+exportPathList PATH MYINITPATHS
 
-unset PATH 											# Clearing the current PATH variable
-unset MYPATHSEPARATOR 								# Using a costum separator variable, empty at first, so we don't get a separator at the
-													# start of the the PATH
-
-for p in "${MYINITPATHS[@]}" 						# Iterate over each entry in MYINITPATHS array
-do
-	if [[ -d $p ]]; then 							# Check if entry from MYINITPATHS exists on this system
-		export PATH=$PATH$MYPATHSEPARATOR$p         # If yes add it to PATH. Also use MYPATHSEPARATOR in between current path and new entry
-		MYPATHSEPARATOR=: 							# After first added entry set separator variable so it's active now
-	fi
-done
-unset MYPATHSEPARATOR 								# clean up helper variables
-unset MYINITPATHS
 
 # Add directories to LD_LIBRARY_PATH variable
-#
-# All paths in INITPATHS are checked whether they exist on the system
-# if they do they get added to the PATH variable
-#
-# order is from top to bottom with top coming first
-MYINITPATHS=(
+MYLDLIBRARYPATHS=(
 	"/usr/local/lib"
 	"$HOME/ext/lib"
 	"$HOME/repositories/installs/linux-x64-debug/lib"
 	"$VULKAN_SDK/lib"
 )
+exportPathList LD_LIBRARY_PATH MYLDLIBRARYPATHS
 
-unset LD_LIBRARY_PATH 											# Clearing the current LD_LIBRARY_PATH variable
-unset MYPATHSEPARATOR 								# Using a costum separator variable, empty at first, so we don't get a separator at the
-													# start of the the LD_LIBRARY_PATH
+# Add directories to MANPATH variable
+MYMANPATHS=(
+    "/usr/local/opt/coreutils/libexec/gnuman"
+    "/usr/local/man"
+    "$MANPATH"
+)
+exportPathList MANPATH MYMANPATHS
 
-for p in "${MYINITPATHS[@]}" 						# Iterate over each entry in MYINITPATHS array
-do
-	if [[ -d $p ]]; then 							# Check if entry from MYINITPATHS exists on this system
-		export LD_LIBRARY_PATH=$LD_LIBRARY_PATH$MYPATHSEPARATOR$p         # If yes add it to PATH. Also use MYPATHSEPARATOR in between current path and new entry
-		MYPATHSEPARATOR=: 							# After first added entry set separator variable so it's active now
-	fi
-done
-unset MYPATHSEPARATOR 								# clean up helper variables
-unset MYINITPATHS
 
-export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:/usr/local/man:$MANPATH"
 
 if [[ -f $HOME/.zsh_aliases ]]; then
 	source $HOME/.zsh_aliases
