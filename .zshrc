@@ -157,6 +157,7 @@ MYINITPATHS=(
 	"$HOME/scripts"
 	"$VULKAN_SDK/bin"
 	"$HOME/Library/Python/3.9/bin"
+    "/usr/local/opt/ruby/bin"
 	#"$HOME/ext/CodeSourcery/Sourcery_G++_Lite/bin" # i can also add some comment for this path
 )
 exportPathList PATH MYINITPATHS
@@ -179,7 +180,23 @@ MYMANPATHS=(
 )
 exportPathList MANPATH MYMANPATHS
 
+# Add directories to LDFLAGS variable
+MYLDFLAGS=(
+    "/usr/local/opt/ruby/lib"
+)
+exportPathList LDFLAGS MYLDFLAGS "-L"
 
+# Add directories to CPPFLAGS variable
+MYCPPFLAGS=(
+    "/usr/local/opt/ruby/include"
+)
+exportPathList CPPFLAGS MYCPPFLAGS "-I"
+
+# Add directories to PKG_CONFIG_PATH variable
+MYPKGCONFIGPATH=(
+    "/usr/local/opt/ruby/lib/pkgconfig"
+)
+exportPathList PKG_CONFIG_PATH MYPKGCONFIGPATH
 
 if [[ -f $HOME/.zsh_aliases ]]; then
 	source $HOME/.zsh_aliases
