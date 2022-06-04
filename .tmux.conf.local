@@ -294,8 +294,10 @@ set -g mouse on
 #set -g status-position top
 
 # toggle last used window
+unbind l
 bind l last-window
 
 # make next pane repeatable
+unbind o
 bind -r o select-pane -t :.+
 
