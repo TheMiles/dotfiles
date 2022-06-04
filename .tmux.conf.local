@@ -278,8 +278,16 @@ tmux_conf_theme_left_separator_sub='\uE0B1'
 tmux_conf_theme_right_separator_main='\uE0B2'
 tmux_conf_theme_right_separator_sub='\uE0B3'
 
+# load plugins
+set -g @plugin 'tmux-plugins/tmux-cpu'
+
 # configure status bar layout
-tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized} , %R , %d %b | #{username}#{root} | #{hostname} '
+tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized} #{?battery_status, #{battery_status},}#{?battery_bar, #{battery_bar},}#{?battery_percentage, #{battery_percentage},} %R , %d %b , CPU #{cpu_percentage} RAM #{ram_percentage} | #{username}#{root} | #{hostname} '
+
+#set -g @cpu_low_bg_color "#[bg=green,fg=black]"
+
+set -g @ram_medium_thresh "80"
+set -g @ram_high_thresh "90"
 
 # increase history size
 #set -g history-limit 10000
