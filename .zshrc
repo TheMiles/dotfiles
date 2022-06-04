@@ -206,6 +206,9 @@ if [[ -f $HOME/.tokens ]]; then
 	source $HOME/.tokens
 fi
 
+if [[ -f $HOME/.zprofile ]]; then
+	source $HOME/.zprofile
+fi
 
 
 # # Preferred editor for local and remote sessions
