@@ -295,3 +295,7 @@ set -g mouse on
 
 # toggle last used window
 bind l last-window
+
+# make next pane repeatable
+bind -r o select-pane -t :.+
+
