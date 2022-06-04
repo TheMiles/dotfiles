@@ -292,3 +292,6 @@ set -g mouse on
 
 # move status line to top
 #set -g status-position top
+
+# toggle last used window
+bind l last-window
