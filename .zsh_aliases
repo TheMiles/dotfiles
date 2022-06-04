@@ -1,5 +1,5 @@
 
-alias ls='ls --color'
+#alias ls='ls --color'
 
 if [[ -f /usr/local/Cellar/make/4.1/bin/make ]]; then
 	alias make=/usr/local/Cellar/make/4.1/bin/make
@@ -10,4 +10,10 @@ fi
 alias kdmesg='dmesg | perl -ne "BEGIN{\$a= time()- qx!cat /proc/uptime!}; s/\[\s*(\d+)\.\d+\]/localtime(\$1 + \$a)/e; print \$_;"'
 
 alias reset_usb='sudo usbmuxd -u -U usbmux'
+
+# exa https://github.com/ogham/exa replacement for ls
+unalias ls
+alias ls='exa'
+alias ll='exa -l'
+alias la='exa -a'
 
