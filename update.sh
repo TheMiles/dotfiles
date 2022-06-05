@@ -12,7 +12,7 @@ bkpname=".dotfiles_backup";
 gitrepo="git@github.com:TheMiles/dotfiles.git";
 gitrepo_ro="git://github.com/TheMiles/dotfiles.git";
 gitrepo_zip="https://github.com/TheMiles/dotfiles/archive/master.zip"
-ignored="update.sh|.git$|.gitmodule|.gitignore|README.md";
+ignored="update.sh|.git$|.gitmodule|.gitignore|README.md|ohmyzsh_plugins";
 
 #----debug setup----
 #home=$1
