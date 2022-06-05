@@ -159,6 +159,7 @@ MYINITPATHS=(
 	"$HOME/Library/Python/3.9/bin"
     "/usr/local/opt/ruby/bin"
 	#"$HOME/ext/CodeSourcery/Sourcery_G++_Lite/bin" # i can also add some comment for this path
+	"/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 )
 exportPathList PATH MYINITPATHS
 
