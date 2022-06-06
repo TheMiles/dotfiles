@@ -211,6 +211,9 @@ if [[ -f $HOME/.zprofile ]]; then
 	source $HOME/.zprofile
 fi
 
+# config zoxide (has to be called _after_ compinit)
+eval "$(zoxide init zsh)"
+
 
 # # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
