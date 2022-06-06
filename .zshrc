@@ -231,3 +231,5 @@ export EDITOR='vim'
 export AMPY_PORT=/dev/cu.usbserial-0001
 export AMPY_BAUD=115200
 export AMPY_DELAY=1.5
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

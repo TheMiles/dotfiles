@@ -123,3 +123,5 @@ VBOX_USB=usbfs
 export LD_LIBRARY_PATH=/home/miles/ext/lib/
 
 
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
