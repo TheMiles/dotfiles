@@ -141,24 +141,6 @@ then
 
       echo "!!! ssh key not installed on github for this box, cloning read only repo"
       git clone --recursive $gitrepo_ro $dotfiles_folder
-      echo "|* changing remote origin to read/write repo: $gitrepo"
-      cd $dotfiles_folder && git config remote.origin.url $gitrepo
-
-      if [ -e $home/id_rsa.pub  ];
-      then
-
-        echo "|* please copy your public key below to github or you won't be able to commit";
-        echo
-        cat $home/.ssh/id_rsa.pub
-      else
-
-        echo "|* please generate your public/private key pair with the command:"
-        echo
-        echo "ssh-keygen"
-        echo
-        echo "|* and copy the public key to github"
-        echo "|* more details: https://help.github.com/articles/generating-ssh-keys"
-      fi
 
     else
 
