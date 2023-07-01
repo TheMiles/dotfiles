@@ -1,5 +1,5 @@
 [user]
-	name = Miles
+	name = TheMiles
 	email = miles@coders-of-the-caribbean.org
 [credential]
 	helper 		= cache
@@ -51,3 +51,5 @@
 	dump = cat-file -p
 [cola]
 	spellcheck = false
+[init]
+	defaultBranch = main
