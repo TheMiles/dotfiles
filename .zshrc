@@ -124,7 +124,17 @@ function exportPathList {
     unset PATHLIST
 }
 
+function findExistingPath {
+    PATHLIST=$1
 
+    for p in "${(P)${PATHLIST}[@]}"                     # Iterate over each entry in PATHLIST array
+    do
+        if [[ -d $p ]]; then                            # Check if entry from PATHLIST exists on this system
+            echo ${p}
+            break
+        fi
+    done
+}
 
 # Add directories to PATH variable
 #
@@ -160,6 +170,8 @@ MYINITPATHS=(
     "/usr/local/opt/ruby/bin"
 	#"$HOME/ext/CodeSourcery/Sourcery_G++_Lite/bin" # i can also add some comment for this path
 	"/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+    "/opt/homebrew/opt/fzf/bin"
+    "/usr/local/opt/fzf/bin"
 )
 exportPathList PATH MYINITPATHS
 
@@ -235,4 +247,27 @@ export AMPY_PORT=/dev/cu.usbserial-0001
 export AMPY_BAUD=115200
 export AMPY_DELAY=1.5
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+#################################
+##
+##  FZF config
+##
+#################################
+
+FZFPATHS=(
+    "/opt/homebrew/opt/fzf/shell"
+    "/usr/local/opt/fzf/shell"
+    "/usr/share/doc/fzf/examples"
+)
+
+FZFPATH=$(findExistingPath FZFPATHS)
+
+
+# Auto-completion
+# ---------------
+[[ $- == *i* ]] && source "${FZFPATH}/completion.zsh"
+
+# Key bindings
+# ------------
+source "${FZFPATH}/key-bindings.zsh"
+
