@@ -11,11 +11,11 @@ alias kdmesg='dmesg | perl -ne "BEGIN{\$a= time()- qx!cat /proc/uptime!}; s/\[\s
 
 alias reset_usb='sudo usbmuxd -u -U usbmux'
 
-# exa https://github.com/ogham/exa replacement for ls
+# eza https://github.com/eza-community/eza replacement for ls
 unalias ls
-alias ls='exa'
-alias ll='exa -l'
-alias la='exa -a'
+alias ls='eza'
+alias ll='eza -l'
+alias la='eza -a'
 
 # bat https://github.com/sharkdp/bat 
 alias cat='bat'
