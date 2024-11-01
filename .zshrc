@@ -172,6 +172,7 @@ MYINITPATHS=(
 	"/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
     "/opt/homebrew/opt/fzf/bin"
     "/usr/local/opt/fzf/bin"
+    "/usr/local/texlive/2024/bin/universal-darwin"
 )
 exportPathList PATH MYINITPATHS
 
