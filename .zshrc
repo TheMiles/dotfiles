@@ -259,6 +259,7 @@ FZFPATHS=(
     "/opt/homebrew/opt/fzf/shell"
     "/usr/local/opt/fzf/shell"
     "/usr/share/doc/fzf/examples"
+    "/usr/share/fzf"
 )
 
 FZFPATH=$(findExistingPath FZFPATHS)
