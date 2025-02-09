@@ -251,6 +251,19 @@ export AMPY_DELAY=1.5
 
 #################################
 ##
+##  jj Jujutsu vcs config
+##
+#################################
+
+if [[ $+commands[jj] ]]; then
+  autoload -U compinit
+  compinit
+  source <(jj util completion zsh)
+fi
+
+
+#################################
+##
 ##  FZF config
 ##
 #################################
