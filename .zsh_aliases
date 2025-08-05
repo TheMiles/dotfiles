@@ -20,3 +20,7 @@ alias la='eza -a'
 # bat https://github.com/sharkdp/bat 
 alias cat='bat'
 
+# weather report https://github.com/chubin/wttr.in
+alias weather='curl wttr.in'
+alias weather2='curl v2.wttr.in'
+
