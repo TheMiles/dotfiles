@@ -94,6 +94,8 @@ if [[ -d "$HOME/ext/VulkanSDK/1.0.54.0/x86_64" ]]; then
 	export VK_LAYER_PATH="$VULKAN_SDK/etc/explicit_layer.d"
 fi
 
+# bun
+export BUN_INSTALL="$HOME/.bun"
 
 function exportPathList {
     DESTVAR=$1                      # first parameter is name of the variable to be set
@@ -166,7 +168,8 @@ MYINITPATHS=(
 	#"$HOME/ext/bin"
 	"$HOME/scripts"
 	"$VULKAN_SDK/bin"
-	"$HOME/Library/Python/3.9/bin"
+	"$BUN_INSTALL/bin"
+  "$HOME/Library/Python/3.9/bin"
   "/usr/local/opt/ruby/bin"
 	#"$HOME/ext/CodeSourcery/Sourcery_G++_Lite/bin" # i can also add some comment for this path
 	"/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
@@ -286,7 +289,6 @@ FZFPATH=$(findExistingPath FZFPATHS)
 # ------------
 source "${FZFPATH}/key-bindings.zsh"
 
-
 # Specific views for commands
 # ------------
 _fzf_comprun() {
@@ -299,3 +301,7 @@ _fzf_comprun() {
     *)            fzf "$@" ;;
   esac
 }
+
+# bun completions
+[ -s "/home/miles/.bun/_bun" ] && source "/home/miles/.bun/_bun"
+
