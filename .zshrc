@@ -167,12 +167,12 @@ MYINITPATHS=(
 	"$HOME/scripts"
 	"$VULKAN_SDK/bin"
 	"$HOME/Library/Python/3.9/bin"
-    "/usr/local/opt/ruby/bin"
+  "/usr/local/opt/ruby/bin"
 	#"$HOME/ext/CodeSourcery/Sourcery_G++_Lite/bin" # i can also add some comment for this path
 	"/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
-    "/opt/homebrew/opt/fzf/bin"
-    "/usr/local/opt/fzf/bin"
-    "/usr/local/texlive/2024/bin/universal-darwin"
+  "/opt/homebrew/opt/fzf/bin"
+  "/usr/local/opt/fzf/bin"
+  "/usr/local/texlive/2024/bin/universal-darwin"
 )
 exportPathList PATH MYINITPATHS
 
