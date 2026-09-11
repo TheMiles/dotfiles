@@ -176,6 +176,7 @@ MYINITPATHS=(
   "/opt/homebrew/opt/fzf/bin"
   "/usr/local/opt/fzf/bin"
   "/usr/local/texlive/2024/bin/universal-darwin"
+  "/opt/homebrew/opt/openjdk@21/bin"
 )
 exportPathList PATH MYINITPATHS
 
