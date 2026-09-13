@@ -35,10 +35,10 @@
     default		= upstream
 
 [pull]
-    default		= current
+    rebase		= false
 
 [diff]
-  memonicprefix	= true
+  mnemonicPrefix	= true
 
 
 [alias]
