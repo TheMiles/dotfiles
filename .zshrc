@@ -108,7 +108,8 @@ function exportPathList {
         SEPARATOR=":"
     fi
 
-    unset "${DESTVAR}"                                  # Clearing the current target variable
+    MYOLDVALUE=${(P)DESTVAR}                            # keep whatever was already set (e.g. by .zprofile) instead of discarding it
+    unset "${DESTVAR}"
     unset MYPATHSEPARATOR                               # Using a costum separator variable, empty at first, so we don't get a separator at the
                                                         # start of the the target variable
 
@@ -119,7 +120,10 @@ function exportPathList {
             MYPATHSEPARATOR=${SEPARATOR}                           # After first added entry set separator variable so it's active now
         fi
     done
-    unset MYPATHSEPARATOR                               # clean up helper variables
+    if [[ -n $MYOLDVALUE ]]; then                       # re-append the previous value at the end
+        export ${DESTVAR}=${(P)DESTVAR}${MYPATHSEPARATOR}${MYOLDVALUE}
+    fi
+    unset MYPATHSEPARATOR MYOLDVALUE                    # clean up helper variables
     unset PATHLIST
 }
 
@@ -191,7 +195,6 @@ exportPathList LD_LIBRARY_PATH MYLDLIBRARYPATHS
 MYMANPATHS=(
     "/usr/local/opt/coreutils/libexec/gnuman"
     "/usr/local/man"
-    "$MANPATH"
 )
 exportPathList MANPATH MYMANPATHS
 
