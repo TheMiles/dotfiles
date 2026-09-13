@@ -12,13 +12,17 @@ alias kdmesg='dmesg | perl -ne "BEGIN{\$a= time()- qx!cat /proc/uptime!}; s/\[\s
 alias reset_usb='sudo usbmuxd -u -U usbmux'
 
 # eza https://github.com/eza-community/eza replacement for ls
-unalias ls
-alias ls='eza'
-alias ll='eza -l'
-alias la='eza -a'
+if command -v eza &>/dev/null; then
+	unalias ls 2>/dev/null
+	alias ls='eza'
+	alias ll='eza -l'
+	alias la='eza -a'
+fi
 
-# bat https://github.com/sharkdp/bat 
-alias cat='bat'
+# bat https://github.com/sharkdp/bat
+if command -v bat &>/dev/null; then
+	alias cat='bat'
+fi
 
 # weather report https://github.com/chubin/wttr.in
 alias weather='curl wttr.in'
