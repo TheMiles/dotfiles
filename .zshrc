@@ -1,3 +1,9 @@
+# make sure brew (and anything else .zprofile sets up) is available even in
+# non-login interactive shells, before it's needed below
+if [[ -f $HOME/.zprofile ]]; then
+	source $HOME/.zprofile
+fi
+
 # Homebrew completions
 # has to be called before compinit
 # Note: Oh My Zsh calls compinit, so do this before!
@@ -222,10 +228,6 @@ fi
 
 if [[ -f $HOME/.tokens ]]; then
 	source $HOME/.tokens
-fi
-
-if [[ -f $HOME/.zprofile ]]; then
-	source $HOME/.zprofile
 fi
 
 # config zoxide (has to be called _after_ compinit)
