@@ -1,17 +1,11 @@
-# make sure brew (and anything else .zprofile sets up) is available even in
-# non-login interactive shells, before it's needed below
+# ensure brew is on PATH even in non-login shells
 if [[ -f $HOME/.zprofile ]]; then
 	source $HOME/.zprofile
 fi
 
-# Homebrew completions
-# has to be called before compinit
-# Note: Oh My Zsh calls compinit, so do this before!
+# Homebrew completions (must be in FPATH before compinit runs)
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
-
-  autoload -Uz compinit
-  compinit
 fi
 
 
@@ -67,9 +61,7 @@ if [[ -d $OHZSH ]]; then
 	# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 	# Example format: plugins=(rails git textmate ruby lighthouse)
 	#
-	# Plugin list is versioned: ~/.omz_plugins.common plus an OS-specific file
-	# (~/.omz_plugins.darwin or ~/.omz_plugins.linux), one plugin name per line,
-	# blank lines/# comments ignored.
+	# versioned plugin list: ~/.omz_plugins.common + ~/.omz_plugins.<os>
 	PLUGIN_FILES=("$HOME/.omz_plugins.common" "$HOME/.omz_plugins.${(L)$(uname)}")
 
 	plugins=()
@@ -263,8 +255,6 @@ export AMPY_DELAY=1.5
 #################################
 
 if [[ $+commands[jj] ]]; then
-  autoload -U compinit
-  compinit
   source <(jj util completion zsh)
 fi
 
@@ -310,9 +300,11 @@ _fzf_comprun() {
 # bun completions
 [ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
 
-# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+# The following line has been added by Docker Desktop to enable Docker CLI completions.
 fpath=(/Users/miles/.docker/completions $fpath)
+# End of Docker CLI completions
+
+# pick up fpath additions above (runs after Oh My Zsh's own compinit)
 autoload -Uz compinit
 compinit
-# End of Docker CLI completions
 
