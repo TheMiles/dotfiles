@@ -307,7 +307,7 @@ _fzf_comprun() {
 }
 
 # bun completions
-[ -s "/home/miles/.bun/_bun" ] && source "/home/miles/.bun/_bun"
+[ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
 
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
 fpath=(/Users/miles/.docker/completions $fpath)
