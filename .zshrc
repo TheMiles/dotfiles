@@ -283,14 +283,15 @@ FZFPATHS=(
 
 FZFPATH=$(findExistingPath FZFPATHS)
 
+if [[ -n $FZFPATH ]]; then
+	# Auto-completion
+	# ---------------
+	[[ $- == *i* ]] && source "${FZFPATH}/completion.zsh"
 
-# Auto-completion
-# ---------------
-[[ $- == *i* ]] && source "${FZFPATH}/completion.zsh"
-
-# Key bindings
-# ------------
-source "${FZFPATH}/key-bindings.zsh"
+	# Key bindings
+	# ------------
+	source "${FZFPATH}/key-bindings.zsh"
+fi
 
 # Specific views for commands
 # ------------
