@@ -229,7 +229,9 @@ if [[ -f $HOME/.zprofile ]]; then
 fi
 
 # config zoxide (has to be called _after_ compinit)
-eval "$(zoxide init zsh)"
+if type zoxide &>/dev/null; then
+	eval "$(zoxide init zsh)"
+fi
 
 
 # # Preferred editor for local and remote sessions

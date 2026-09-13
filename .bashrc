@@ -126,5 +126,7 @@ export LD_LIBRARY_PATH=/home/miles/ext/lib/
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-eval "$(zoxide init bash)"
+if command -v zoxide &>/dev/null; then
+    eval "$(zoxide init bash)"
+fi
 
