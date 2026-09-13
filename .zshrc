@@ -67,22 +67,21 @@ if [[ -d $OHZSH ]]; then
 	# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 	# Example format: plugins=(rails git textmate ruby lighthouse)
 	#
-	if [[ -d $OHZSH/enabled_plugins ]]; then
-		#
-		# Possibility to edit local configuration for loaded plugins
-		#
-		# if directory enabled_plugins exists in the oh-my-zsh folder, the filenames in this
-		# directory are used as loaded plugins. Just touch/rm the plugin names in enabled_plugins
-		# to add or remove them from the plugin list
-		plugins=( `ls $OHZSH/enabled_plugins` )
+	# Plugin list is versioned: ~/.omz_plugins.common plus an OS-specific file
+	# (~/.omz_plugins.darwin or ~/.omz_plugins.linux), one plugin name per line,
+	# blank lines/# comments ignored.
+	PLUGIN_FILES=("$HOME/.omz_plugins.common" "$HOME/.omz_plugins.${(L)$(uname)}")
 
-	else
-
-		# standard configuration on all machines withouth enabled_plugins directory in
-		# the oh-my-zsh folder
-		plugins=(git)
-
-	fi
+	plugins=()
+	for PLUGIN_FILE in "${PLUGIN_FILES[@]}"; do
+		if [[ -f $PLUGIN_FILE ]]; then
+			while IFS= read -r line; do
+				[[ -z $line || $line == \#* ]] && continue
+				plugins+=("$line")
+			done < "$PLUGIN_FILE"
+		fi
+	done
+	[[ ${#plugins[@]} -eq 0 ]] && plugins=(git)
 
 
 	source $ZSH/oh-my-zsh.sh
