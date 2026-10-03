@@ -265,7 +265,7 @@ export AMPY_DELAY=1.5
 ##
 #################################
 
-if [[ $+commands[jj] ]]; then
+if (( $+commands[jj] )); then
   source <(jj util completion zsh)
 fi
 
