@@ -105,7 +105,7 @@ function exportPathList {
     fi
 
     if [ "$#" -ge 4 ]; then
-        SEPARATOR=":"
+        SEPARATOR=$4
     fi
 
     MYOLDVALUE=${(P)DESTVAR}                            # keep whatever was already set (e.g. by .zprofile) instead of discarding it
@@ -123,7 +123,8 @@ function exportPathList {
     if [[ -n $MYOLDVALUE ]]; then                       # re-append the previous value at the end
         export ${DESTVAR}=${(P)DESTVAR}${MYPATHSEPARATOR}${MYOLDVALUE}
     fi
-    if [[ -n ${(P)DESTVAR} ]]; then                     # drop duplicate entries, first occurrence wins
+    if [[ -n ${(P)DESTVAR} && $SEPARATOR == ":" ]]; then # drop duplicate entries, first occurrence wins (path lists only,
+                                                        # flag lists may legitimately repeat words)
         local -aU UNIQUEPARTS
         UNIQUEPARTS=("${(@ps.$SEPARATOR.)${(P)DESTVAR}}")
         export ${DESTVAR}=${(pj.$SEPARATOR.)UNIQUEPARTS}
@@ -210,13 +211,13 @@ exportPathList MANPATH MYMANPATHS
 MYLDFLAGS=(
     "/usr/local/opt/ruby/lib"
 )
-exportPathList LDFLAGS MYLDFLAGS "-L"
+exportPathList LDFLAGS MYLDFLAGS "-L" " "
 
 # Add directories to CPPFLAGS variable
 MYCPPFLAGS=(
     "/usr/local/opt/ruby/include"
 )
-exportPathList CPPFLAGS MYCPPFLAGS "-I"
+exportPathList CPPFLAGS MYCPPFLAGS "-I" " "
 
 # Add directories to PKG_CONFIG_PATH variable
 MYPKGCONFIGPATH=(
