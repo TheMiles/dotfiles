@@ -70,8 +70,14 @@ function link_assets {
         then echo "Id[ignore dir] $home/$asset";
         else
           echo "Cd[conflict dir] $home/$asset";
-          backup_asset $asset;
-          ln -s $dotfiles_folder/$asset $home/$asset;
+          if [ $debug == false ];
+          then
+            backup_asset $asset;
+            ln -s $dotfiles_folder/$asset $home/$asset;
+          else
+            echo mv $home/$asset $backup_folder/$asset;
+            echo ln -s $dotfiles_folder/$asset $home/$asset;
+          fi
         fi
       else
         ha=$(md5prog $home/$asset);
