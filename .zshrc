@@ -105,10 +105,11 @@ fi
 export BUN_INSTALL="$HOME/.bun"
 
 function exportPathList {
-    DESTVAR=$1                      # first parameter is name of the variable to be set
-    PATHLIST=$2                     # second parameter is an array of paths
-    PREFIX=""                       # optional third parameter a prefix for each entry
-    SEPARATOR=":"                   # optional fourth parameter the separator between entries
+    local DESTVAR=$1                # first parameter is name of the variable to be set
+    local PATHLIST=$2               # second parameter is an array of paths
+    local PREFIX=""                 # optional third parameter a prefix for each entry
+    local SEPARATOR=":"             # optional fourth parameter the separator between entries
+    local p
 
     if [ "$#" -ge 3 ]; then
         PREFIX=$3
@@ -118,9 +119,9 @@ function exportPathList {
         SEPARATOR=$4
     fi
 
-    MYOLDVALUE=${(P)DESTVAR}                            # keep whatever was already set (e.g. by .zprofile) instead of discarding it
+    local MYOLDVALUE=${(P)DESTVAR}                      # keep whatever was already set (e.g. by .zprofile) instead of discarding it
     unset "${DESTVAR}"
-    unset MYPATHSEPARATOR                               # Using a costum separator variable, empty at first, so we don't get a separator at the
+    local MYPATHSEPARATOR=""                            # Using a costum separator variable, empty at first, so we don't get a separator at the
                                                         # start of the the target variable
 
     for p in "${(P)${PATHLIST}[@]}"                     # Iterate over each entry in PATHLIST array
@@ -139,12 +140,11 @@ function exportPathList {
         UNIQUEPARTS=("${(@ps.$SEPARATOR.)${(P)DESTVAR}}")
         export ${DESTVAR}=${(pj.$SEPARATOR.)UNIQUEPARTS}
     fi
-    unset MYPATHSEPARATOR MYOLDVALUE                    # clean up helper variables
-    unset PATHLIST
 }
 
 function findExistingPath {
-    PATHLIST=$1
+    local PATHLIST=$1
+    local p
 
     for p in "${(P)${PATHLIST}[@]}"                     # Iterate over each entry in PATHLIST array
     do
