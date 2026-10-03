@@ -9,7 +9,7 @@ if type brew &>/dev/null; then
 fi
 
 # The following line has been added by Docker Desktop to enable Docker CLI completions.
-fpath=(/Users/miles/.docker/completions $fpath)
+fpath=($HOME/.docker/completions $fpath)
 # End of Docker CLI completions
 
 
@@ -322,6 +322,8 @@ _fzf_comprun() {
 # bun completions
 [ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
 
+# only on machines with the homebrew miniconda, the managed block would otherwise add a missing dir to PATH
+if [[ -x /opt/homebrew/Caskroom/miniconda/base/bin/conda ]]; then
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
@@ -336,4 +338,5 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+fi
 
