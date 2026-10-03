@@ -176,7 +176,7 @@ MYINITPATHS=(
 	#"$HOME/ext/bin"
 	"$HOME/scripts"
   "$HOME/.local/bin"
-	"$VULKAN_SDK/bin"
+	"${VULKAN_SDK:+$VULKAN_SDK/bin}"            # empty (and thus skipped) if VULKAN_SDK is not set
 	"$BUN_INSTALL/bin"
   "$HOME/Library/Python/3.9/bin"
   "/usr/local/opt/ruby/bin"
@@ -195,7 +195,7 @@ MYLDLIBRARYPATHS=(
 	"/usr/local/lib"
 	"$HOME/ext/lib"
 	"$HOME/repositories/installs/linux-x64-debug/lib"
-	"$VULKAN_SDK/lib"
+	"${VULKAN_SDK:+$VULKAN_SDK/lib}"
 )
 exportPathList LD_LIBRARY_PATH MYLDLIBRARYPATHS
 
