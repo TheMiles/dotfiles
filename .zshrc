@@ -123,6 +123,11 @@ function exportPathList {
     if [[ -n $MYOLDVALUE ]]; then                       # re-append the previous value at the end
         export ${DESTVAR}=${(P)DESTVAR}${MYPATHSEPARATOR}${MYOLDVALUE}
     fi
+    if [[ -n ${(P)DESTVAR} ]]; then                     # drop duplicate entries, first occurrence wins
+        local -aU UNIQUEPARTS
+        UNIQUEPARTS=("${(@ps.$SEPARATOR.)${(P)DESTVAR}}")
+        export ${DESTVAR}=${(pj.$SEPARATOR.)UNIQUEPARTS}
+    fi
     unset MYPATHSEPARATOR MYOLDVALUE                    # clean up helper variables
     unset PATHLIST
 }
