@@ -8,6 +8,10 @@ if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
 fi
 
+# The following line has been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/miles/.docker/completions $fpath)
+# End of Docker CLI completions
+
 
 
 # Path to your oh-my-zsh configuration.
@@ -80,6 +84,12 @@ if [[ -d $OHZSH ]]; then
 
 	# remove conflicting aliases
 	unalias ag 2>/dev/null
+fi
+
+# Oh My Zsh runs compinit itself, only do it here if that did not happen
+if (( ! $+functions[compdef] )); then
+    autoload -Uz compinit
+    compinit
 fi
 
 
@@ -311,14 +321,6 @@ _fzf_comprun() {
 
 # bun completions
 [ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
-
-# The following line has been added by Docker Desktop to enable Docker CLI completions.
-fpath=(/Users/miles/.docker/completions $fpath)
-# End of Docker CLI completions
-
-# pick up fpath additions above (runs after Oh My Zsh's own compinit)
-autoload -Uz compinit
-compinit
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
