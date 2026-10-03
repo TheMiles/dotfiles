@@ -17,7 +17,7 @@ Just run the following line from a shell
 This gets the update script, which will produce the `~/.dotfile` directory and try to clone the repository to this folder. 
 After cloning/updating the contained files are "installed", meaning
 * check whether file already exists
-* make backup of the file to `~/.dotfile_backup`.
+* make backup of the file to `~/.dotfiles_backup/<timestamp>`.
 * create symlink from repo directory to home directory
 
 

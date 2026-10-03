@@ -20,7 +20,7 @@ ignored="update.sh|.git$|.gitmodule|.gitignore|README.md";
 #------------------
 
 dotfiles_folder=$home/$dotfilesname;
-backup_folder=$home/$bkpname;
+backup_folder=$home/$bkpname/$(date +%Y%m%d-%H%M%S);   # one folder per run, so older backups are never overwritten
 
 function md5prog {
   if [ $(uname) == "Darwin" ]; then
@@ -29,6 +29,11 @@ function md5prog {
   if [ $(uname) == "Linux" ]; then
     md5sum $1 | awk {'print $1'}
   fi
+}
+
+function backup_asset {
+  mkdir -p $backup_folder;
+  mv $home/$1 $backup_folder/$1;
 }
 
 function update_submodules {
@@ -65,7 +70,7 @@ function link_assets {
         then echo "Id[ignore dir] $home/$asset";
         else
           echo "Cd[conflict dir] $home/$asset";
-          mv $home/$asset $backup_folder/$asset;
+          backup_asset $asset;
           ln -s $dotfiles_folder/$asset $home/$asset;
         fi
       else
@@ -82,7 +87,7 @@ function link_assets {
             echo "L [re-link] $home/$asset";
             if [ $debug == false ];
             then
-              mv $home/$asset $backup_folder/$asset;
+              backup_asset $asset;
               ln -s $dotfiles_folder/$asset $home/$asset;
             else
               echo mv $home/$asset $backup_folder/$asset;
@@ -94,7 +99,7 @@ function link_assets {
           echo "C [conflict] $home/$asset";
           if [ $debug == false ];
           then
-            mv $home/$asset $backup_folder/$asset;
+            backup_asset $asset;
             ln -s $dotfiles_folder/$asset $home/$asset;
           else
             echo mv $home/$asset $backup_folder/$asset;
@@ -111,10 +116,6 @@ echo "|* debug is" $debug
 echo "|* home is" $home
 echo "|* backup folder is" $backup_folder
 echo "|* dotfiles folder is" $dotfiles_folder
-
-if [ ! -e $backup_folder ];
-  then mkdir -p $backup_folder;
-fi
 
 #clone config folder if not present, update if present
 if [ ! -e $dotfiles_folder ];
