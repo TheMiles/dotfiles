@@ -168,6 +168,7 @@ MYINITPATHS=(
 	#"$HOME/bin"
 	#"$HOME/ext/bin"
 	"$HOME/scripts"
+  "$HOME/.local/bin"
 	"$VULKAN_SDK/bin"
 	"$BUN_INSTALL/bin"
   "$HOME/Library/Python/3.9/bin"
