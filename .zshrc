@@ -151,6 +151,8 @@ MYINITPATHS=(
 	"/usr/local/Cellar/ctags/5.8_1/bin"
 	"/usr/local/opt/python/libexec/bin"
 	"/usr/local/opt/unzip/bin"
+	"/opt/homebrew/bin"
+	"/opt/homebrew/sbin"
 	"/usr/local/bin"
 	"/usr/local/opt/m4/bin"
 	"/usr/bin"
