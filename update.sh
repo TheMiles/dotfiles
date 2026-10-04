@@ -39,7 +39,19 @@ function backup_asset {
 function link_assets {
   for asset in $assets ;
   do
-    if [ ! -e "$home/$asset" ];
+    if [ -h "$home/$asset" ] && [ ! -e "$home/$asset" ];
+    then
+      #asset is a symlink pointing nowhere, replace it
+      echo "B [broken link] $home/$asset";
+      if [ $debug == false ];
+      then
+        backup_asset "$asset";
+        ln -s "$dotfiles_folder/$asset" "$home/$asset";
+      else
+        echo mv "$home/$asset" "$backup_folder/$asset";
+        echo ln -s "$dotfiles_folder/$asset" "$home/$asset";
+      fi
+    elif [ ! -e "$home/$asset" ];
     then
       #asset does not exist, can just copy it
       echo "N [new] $home/$asset";
