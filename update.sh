@@ -12,7 +12,7 @@ bkpname=".dotfiles_backup";
 gitrepo="git@github.com:TheMiles/dotfiles.git";
 gitrepo_ro="https://github.com/TheMiles/dotfiles.git";
 gitrepo_zip="https://github.com/TheMiles/dotfiles/archive/master.zip"
-ignored="update.sh|.git$|.gitmodule|.gitignore|README.md";
+ignored="update.sh|.git$|.gitmodule|.gitignore|README.md|.DS_Store";
 
 #----debug setup----
 #home=$1
@@ -156,7 +156,7 @@ else
 
 fi
 
-assets=$(ls -A1 "$dotfiles_folder" | egrep -v "$ignored" | xargs);
+assets=$(ls -A1 "$dotfiles_folder" | grep -Ev "$ignored" | xargs);
 echo "|* tracking assets: [ $assets ] "
 echo "|* linking assets in $home"
 link_assets
