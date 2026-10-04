@@ -36,21 +36,6 @@ function backup_asset {
   mv $home/$1 $backup_folder/$1;
 }
 
-function update_submodules {
-  return;
-  if [ $debug == true ];
-    then
-      cd $dotfiles_folder
-      echo "|- initializing submodules [fake]"
-      echo "|- updating submodules [fake]"
-    else
-      echo "|* initializing submodules"
-      cd $dotfiles_folder && git submodule -q init
-      echo "|* updating submodules"
-      cd $dotfiles_folder && git submodule update
-  fi
-}
-
 function link_assets {
   for asset in $assets ;
   do
@@ -149,10 +134,6 @@ then
       echo "!!! ssh key not installed on github for this box, cloning read only repo"
       git clone --recursive $gitrepo_ro $dotfiles_folder
 
-    else
-
-      update_submodules
-
     fi
   fi
 else
@@ -160,7 +141,6 @@ else
   echo "|* dotfiles already cloned to $dotfiles_folder"
   echo "|* pulling origin master"
   cd $dotfiles_folder && git pull origin master
-  update_submodules
 
 fi
 
