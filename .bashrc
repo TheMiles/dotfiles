@@ -120,7 +120,9 @@ export CVS_RSH=ssh
 VBOX_USB=usbfs
 
 # ProjectM settings
-export LD_LIBRARY_PATH=/home/miles/ext/lib/
+if [ -d ~/ext/lib ] ; then
+    export LD_LIBRARY_PATH=~/ext/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
+fi
 
 
 
