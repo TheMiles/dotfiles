@@ -46,7 +46,12 @@ xterm*|rxvt*)
     ;;
 esac
 
-export EDITOR="subl -w"
+# same editor as in .zshrc, plain vi where nvim is not installed
+if command -v nvim &>/dev/null; then
+    export EDITOR='nvim'
+else
+    export EDITOR='vi'
+fi
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
