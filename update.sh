@@ -23,54 +23,54 @@ dotfiles_folder=$home/$dotfilesname;
 backup_folder=$home/$bkpname/$(date +%Y%m%d-%H%M%S);   # one folder per run, so older backups are never overwritten
 
 function md5prog {
-  if [ $(uname) == "Darwin" ]; then
-    md5 -q $1
+  if [ "$(uname)" == "Darwin" ]; then
+    md5 -q "$1"
   fi
-  if [ $(uname) == "Linux" ]; then
-    md5sum $1 | awk {'print $1'}
+  if [ "$(uname)" == "Linux" ]; then
+    md5sum "$1" | awk '{print $1}'
   fi
 }
 
 function backup_asset {
-  mkdir -p $backup_folder;
-  mv $home/$1 $backup_folder/$1;
+  mkdir -p "$backup_folder";
+  mv "$home/$1" "$backup_folder/$1";
 }
 
 function link_assets {
   for asset in $assets ;
   do
-    if [ ! -e $home/$asset ];
+    if [ ! -e "$home/$asset" ];
     then
       #asset does not exist, can just copy it
       echo "N [new] $home/$asset";
       if [ $debug == false ];
-        then ln -s $dotfiles_folder/$asset $home/$asset;
-        else echo ln -s $dotfiles_folder/$asset $home/$asset;
+        then ln -s "$dotfiles_folder/$asset" "$home/$asset";
+        else echo ln -s "$dotfiles_folder/$asset" "$home/$asset";
       fi
     else
       #asset is there already
-      if [ -d $home/$asset ];
+      if [ -d "$home/$asset" ];
       then
-        if [ -h $home/$asset ];
+        if [ -h "$home/$asset" ];
         then echo "Id[ignore dir] $home/$asset";
         else
           echo "Cd[conflict dir] $home/$asset";
           if [ $debug == false ];
           then
-            backup_asset $asset;
-            ln -s $dotfiles_folder/$asset $home/$asset;
+            backup_asset "$asset";
+            ln -s "$dotfiles_folder/$asset" "$home/$asset";
           else
-            echo mv $home/$asset $backup_folder/$asset;
-            echo ln -s $dotfiles_folder/$asset $home/$asset;
+            echo mv "$home/$asset" "$backup_folder/$asset";
+            echo ln -s "$dotfiles_folder/$asset" "$home/$asset";
           fi
         fi
       else
-        ha=$(md5prog $home/$asset);
-        ca=$(md5prog $dotfiles_folder/$asset);
-        if [ $ha == $ca ];
+        ha=$(md5prog "$home/$asset");
+        ca=$(md5prog "$dotfiles_folder/$asset");
+        if [ "$ha" == "$ca" ];
         #asset is exactly the same
         then
-          if [ -h $home/$asset ];
+          if [ -h "$home/$asset" ];
           #asset is exactly the same and as link, all good
           then echo "I [ignore] $home/$asset";
           else
@@ -78,11 +78,11 @@ function link_assets {
             echo "L [re-link] $home/$asset";
             if [ $debug == false ];
             then
-              backup_asset $asset;
-              ln -s $dotfiles_folder/$asset $home/$asset;
+              backup_asset "$asset";
+              ln -s "$dotfiles_folder/$asset" "$home/$asset";
             else
-              echo mv $home/$asset $backup_folder/$asset;
-              echo ln -s $dotfiles_folder/$asset $home/$asset;
+              echo mv "$home/$asset" "$backup_folder/$asset";
+              echo ln -s "$dotfiles_folder/$asset" "$home/$asset";
             fi
           fi
         else
@@ -90,11 +90,11 @@ function link_assets {
           echo "C [conflict] $home/$asset";
           if [ $debug == false ];
           then
-            backup_asset $asset;
-            ln -s $dotfiles_folder/$asset $home/$asset;
+            backup_asset "$asset";
+            ln -s "$dotfiles_folder/$asset" "$home/$asset";
           else
-            echo mv $home/$asset $backup_folder/$asset;
-            echo ln -s $dotfiles_folder/$asset $home/$asset;
+            echo mv "$home/$asset" "$backup_folder/$asset";
+            echo ln -s "$dotfiles_folder/$asset" "$home/$asset";
           fi
         fi
       fi
@@ -104,12 +104,12 @@ function link_assets {
 
 echo "|* dotfiles version" $version
 echo "|* debug is" $debug
-echo "|* home is" $home
-echo "|* backup folder is" $backup_folder
-echo "|* dotfiles folder is" $dotfiles_folder
+echo "|* home is" "$home"
+echo "|* backup folder is" "$backup_folder"
+echo "|* dotfiles folder is" "$dotfiles_folder"
 
 #clone config folder if not present, update if present
-if [ ! -e $dotfiles_folder ];
+if [ ! -e "$dotfiles_folder" ];
 then 
 
   if [[ -z $(command -v git) ]]
@@ -117,22 +117,22 @@ then
 
     #git is not available, juzt unpack the zip file
     echo "|* git not available downloading zip file..."
-    curl -LsO $gitrepo_zip
+    curl -LsO "$gitrepo_zip"
     unzip master.zip
-    mv dotfiles-master $dotfiles_folder
+    mv dotfiles-master "$dotfiles_folder"
     rm master.zip
 
   else
 
     #git is available, clone from repo
     echo "|* git clone from repo $gitrepo"
-    git clone --recursive $gitrepo $dotfiles_folder;
+    git clone --recursive "$gitrepo" "$dotfiles_folder";
 
-    if [ ! -e $dotfiles_folder ];
+    if [ ! -e "$dotfiles_folder" ];
     then
 
       echo "!!! ssh key not installed on github for this box, cloning read only repo"
-      git clone --recursive $gitrepo_ro $dotfiles_folder
+      git clone --recursive "$gitrepo_ro" "$dotfiles_folder"
 
     fi
   fi
@@ -140,11 +140,11 @@ else
 
   echo "|* dotfiles already cloned to $dotfiles_folder"
   echo "|* pulling origin master"
-  cd $dotfiles_folder && git pull origin master
+  cd "$dotfiles_folder" && git pull origin master
 
 fi
 
-assets=$(ls -A1 $dotfiles_folder | egrep -v $ignored | xargs);
+assets=$(ls -A1 "$dotfiles_folder" | egrep -v "$ignored" | xargs);
 echo "|* tracking assets: [ $assets ] "
 echo "|* linking assets in $home"
 link_assets
