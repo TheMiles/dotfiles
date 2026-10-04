@@ -5,15 +5,15 @@
 # the default umask is set in /etc/login.defs
 #umask 022
 
+# make homebrew available (same as in .zprofile)
+if [ -x /opt/homebrew/bin/brew ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [ -x /usr/local/bin/brew ]; then
+    eval "$(/usr/local/bin/brew shellenv)"
+fi
+
 # include .bashrc if it exists
 if [ -f ~/.bashrc ]; then
     . ~/.bashrc
 fi
 
-
-
-# New environment setting added by Sourcery G++ Lite for ARM EABI on Tue Jan 03 12:14:42 CET 2012 1.
-# Do NOT modify these lines; they are used to uninstall.
-PATH="/home/miles/ext/CodeSourcery/Sourcery_G++_Lite/bin:${PATH}"
-export PATH
-# End comments by InstallAnywhere on Tue Jan 03 12:14:42 CET 2012 1.
