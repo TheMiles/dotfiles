@@ -216,6 +216,10 @@ MYMANPATHS=(
     "/usr/local/man"
 )
 exportPathList MANPATH MYMANPATHS
+# man only searches its default paths in addition if MANPATH contains an empty entry
+if [[ -n $MANPATH && ":$MANPATH:" != *::* ]]; then
+    export MANPATH="$MANPATH:"
+fi
 
 # Add directories to LDFLAGS variable
 MYLDFLAGS=(
