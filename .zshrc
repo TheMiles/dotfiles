@@ -95,11 +95,13 @@ fi
 
 # User configuration
 
-# Adding path to LunarG Vulkan SDK
-if [[ -d "$HOME/ext/VulkanSDK/1.0.54.0/x86_64" ]]; then
-	export VULKAN_SDK="$HOME/ext/VulkanSDK/1.0.54.0/x86_64"
+# Adding path to LunarG Vulkan SDK (newest installed version)
+VULKAN_SDKS=($HOME/ext/VulkanSDK/*/x86_64(NnOn))
+if [[ -n $VULKAN_SDKS[1] ]]; then
+	export VULKAN_SDK=$VULKAN_SDKS[1]
 	export VK_LAYER_PATH="$VULKAN_SDK/etc/explicit_layer.d"
 fi
+unset VULKAN_SDKS
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
@@ -158,13 +160,14 @@ function findExistingPath {
 # Add directories to PATH variable
 #
 # order is from top to bottom with top coming first
+# globs pick whatever version is installed, newest first
 MYINITPATHS=(
 	#"$(brew --prefix coreutils)/libexec/gnubin"
 	"/Volumes/case-sensitive/esp-open-sdk/xtensa-lx106-elf/bin"
 	"/usr/local/opt/gnu-sed/libexec/gnubin"
 	"/usr/local/opt/make/libexec/gnubin"
 	"/usr/local/opt/coreutils/libexec/gnubin"
-	"/usr/local/Cellar/ctags/5.8_1/bin"
+	"/usr/local/opt/ctags/bin"
 	"/usr/local/opt/python/libexec/bin"
 	"/usr/local/opt/unzip/bin"
 	"/opt/homebrew/bin"
@@ -178,7 +181,7 @@ MYINITPATHS=(
 	"/sbin"
 	"/opt/X11/bin"
 	"/usr/local/CrossPack-AVR/bin"
-	"/usr/texbin"
+	"/Library/TeX/texbin"
 	"/usr/lib/lightdm/lightdm"
 	"/usr/local/games"
 	"/usr/games"
@@ -189,13 +192,13 @@ MYINITPATHS=(
   "$HOME/.local/bin"
 	"${VULKAN_SDK:+$VULKAN_SDK/bin}"            # empty (and thus skipped) if VULKAN_SDK is not set
 	"$BUN_INSTALL/bin"
-  "$HOME/Library/Python/3.9/bin"
+  $HOME/Library/Python/*/bin(NnOn)
   "/usr/local/opt/ruby/bin"
 	#"$HOME/ext/CodeSourcery/Sourcery_G++_Lite/bin" # i can also add some comment for this path
 	"/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
   "/opt/homebrew/opt/fzf/bin"
   "/usr/local/opt/fzf/bin"
-  "/usr/local/texlive/2024/bin/universal-darwin"
+  /usr/local/texlive/*/bin/universal-darwin(NnOn)
   "/opt/homebrew/opt/openjdk@21/bin"
 )
 exportPathList PATH MYINITPATHS
