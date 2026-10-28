@@ -194,6 +194,7 @@ MYINITPATHS=(
 	"$BUN_INSTALL/bin"
   $HOME/Library/Python/*/bin(NnOn)
   "$HOME/.lmstudio/bin"
+  "$HOME/.cargo/bin"
   "/usr/local/opt/ruby/bin"
 	#"$HOME/ext/CodeSourcery/Sourcery_G++_Lite/bin" # i can also add some comment for this path
 	"/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
@@ -347,4 +348,12 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 fi
+
+#################################
+##
+##  rustup config
+##
+#################################
+export PATH="$(brew --prefix rustup)/bin:$PATH"
+
 
