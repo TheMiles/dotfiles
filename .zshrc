@@ -193,6 +193,7 @@ MYINITPATHS=(
 	"${VULKAN_SDK:+$VULKAN_SDK/bin}"            # empty (and thus skipped) if VULKAN_SDK is not set
 	"$BUN_INSTALL/bin"
   $HOME/Library/Python/*/bin(NnOn)
+  "$HOME/.lmstudio/bin"
   "/usr/local/opt/ruby/bin"
 	#"$HOME/ext/CodeSourcery/Sourcery_G++_Lite/bin" # i can also add some comment for this path
 	"/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
