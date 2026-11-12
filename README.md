@@ -20,6 +20,10 @@ After cloning/updating the contained files are "installed", meaning
 * make backup of the file to `~/.dotfiles_backup/<timestamp>`.
 * create symlink from repo directory to home directory
 
+Entries inside the repo's `.config/` folder are linked one by one into `~/.config/`
+(e.g. `.config/ghostty` → `~/.config/ghostty`), so `~/.config` itself stays a regular
+directory and untracked programs can keep their files there.
+
 
 ### tmux integration
 

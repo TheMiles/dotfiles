@@ -12,7 +12,9 @@ bkpname=".dotfiles_backup";
 gitrepo="git@github.com:TheMiles/dotfiles.git";
 gitrepo_ro="https://github.com/TheMiles/dotfiles.git";
 gitrepo_zip="https://github.com/TheMiles/dotfiles/archive/master.zip"
-ignored="update.sh|.git$|.gitmodule|.gitignore|README.md|.DS_Store";
+ignored="update.sh|.git$|.gitmodule|.gitignore|README.md|.DS_Store|^\.config$";
+# Directory inside the repo whose entries are linked one by one into ~/.config
+config_dirname=".config";
 
 #----debug setup----
 #home=$1
@@ -32,7 +34,8 @@ function md5prog {
 }
 
 function backup_asset {
-  mkdir -p "$backup_folder";
+  # assets may live in subfolders (e.g. .config/ghostty), so create the parent dir
+  mkdir -p "$(dirname "$backup_folder/$1")";
   mv "$home/$1" "$backup_folder/$1";
 }
 
@@ -157,6 +160,16 @@ else
 fi
 
 assets=$(ls -A1 "$dotfiles_folder" | grep -Ev "$ignored" | xargs);
+
+# Link each entry of the repo's .config folder individually into ~/.config,
+# so ~/.config itself stays a real directory for untracked programs.
+if [ -d "$dotfiles_folder/$config_dirname" ];
+then
+  mkdir -p "$home/$config_dirname";
+  config_assets=$(ls -A1 "$dotfiles_folder/$config_dirname" | grep -Ev "$ignored" | sed "s|^|$config_dirname/|" | xargs);
+  assets="$assets $config_assets";
+fi
+
 echo "|* tracking assets: [ $assets ] "
 echo "|* linking assets in $home"
 link_assets
