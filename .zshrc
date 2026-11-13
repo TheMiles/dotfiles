@@ -354,6 +354,11 @@ fi
 ##  rustup config
 ##
 #################################
-export PATH="$(brew --prefix rustup)/bin:$PATH"
-
+if command -v brew &>/dev/null; then
+    rustup_bin="$(brew --prefix rustup)/bin"
+    if [[ -d "$rustup_bin" ]]; then
+        export PATH="$rustup_bin:$PATH"
+    fi
+    unset rustup_bin
+fi
 
