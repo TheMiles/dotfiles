@@ -80,6 +80,15 @@ if [[ -d $OHZSH ]]; then
 	[[ ${#plugins[@]} -eq 0 ]] && plugins=(git)
 
 
+	# ssh-agent plugin: start/reuse an agent and load ~/.ssh/id_ed25519
+	zstyle :omz:plugins:ssh-agent identities id_ed25519
+	zstyle :omz:plugins:ssh-agent quiet yes
+	if [[ $OSTYPE == darwin* && $(command -v ssh-add) == /usr/bin/ssh-add ]]; then
+		# macOS: store/load the passphrase via the Apple keychain
+		# (only supported by Apple's ssh-add, not by Homebrew's openssh)
+		zstyle :omz:plugins:ssh-agent ssh-add-args --apple-use-keychain
+	fi
+
 	source $ZSH/oh-my-zsh.sh
 
 	# remove conflicting aliases
